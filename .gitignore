@@ -2,3 +2,7 @@
 gcscraper.pyc
 startproj.ps1
 scrapystuff/scrapystuff/spiders/gcspider.pyc
+gcscraper/
+scrapystuff/scrapystuff/__init__.pyc
+scrapystuff/scrapystuff/settings.pyc
+scrapystuff/scrapystuff/spiders/__init__.pyc
