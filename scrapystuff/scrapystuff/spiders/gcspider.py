@@ -19,12 +19,14 @@ class GCSpider(scrapy.Spider):
     def parse(self, response):
     
         if response.url[-4:] == '.txt':
-            print response.body
-            return
+            lvlline = response.body.split('\n')[2] # Line on morgue that shows character level
+            endline = response.body.split('\n')[4:6] # Line on morgue that shows character level
+            if "             Escaped with the Orb" in endline and "(level 1" in lvlline:
+                print response.body
 
         hrefs = response.css("a::attr(href)").extract()
         
-        links = [response.urljoin(x) for x in hrefs if checklink(x)]
+        links = [response.urljoin(x) for x in hrefs if checklink(x) and "kobold" in x]
         
         for link in links:
             yield scrapy.Request(link)
