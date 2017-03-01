@@ -1,3 +1,4 @@
 .idea/
 gcscraper.pyc
 startproj.ps1
+scrapystuff/scrapystuff/spiders/gcspider.pyc
