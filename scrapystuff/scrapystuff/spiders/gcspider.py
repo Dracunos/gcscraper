@@ -19,7 +19,7 @@ class GCSpider(scrapy.Spider):
         if response.url[-4:] == '.txt':
             lvlline = response.body.split('\n')[2] # Line on morgue that shows character level
             endline = response.body.split('\n')[4:6] # Line on morgue that shows character level
-            if "             Escaped with the Orb" in endline and "(level 1" in lvlline:
+            if "             Escaped with the Orb" in endline and "(level 1," in lvlline:
                 with open("morgues.txt", "a+") as f:
                     f.write(response.url + '\n')
 
