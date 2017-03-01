@@ -8,8 +8,6 @@ def checklink(link):
         return True
     return False
   
-def checkmorgue(morgue):
-    return
 
 class GCSpider(scrapy.Spider):
     name = "gcspider"
@@ -22,11 +20,12 @@ class GCSpider(scrapy.Spider):
             lvlline = response.body.split('\n')[2] # Line on morgue that shows character level
             endline = response.body.split('\n')[4:6] # Line on morgue that shows character level
             if "             Escaped with the Orb" in endline and "(level 1" in lvlline:
-                print response.body
+                with open("morgues.txt", "a+") as f:
+                    f.write(response.url + '\n')
 
         hrefs = response.css("a::attr(href)").extract()
         
-        links = [response.urljoin(x) for x in hrefs if checklink(x) and "kobold" in x]
+        links = [response.urljoin(x) for x in hrefs if checklink(x)]
         
         for link in links:
             yield scrapy.Request(link)
